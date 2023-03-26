@@ -1,2 +1,2 @@
 # University-Projects
-Some of my university projects (2021-2024)
+Some of my university projects from "UBB Computer Science", Cluj-Napoca
