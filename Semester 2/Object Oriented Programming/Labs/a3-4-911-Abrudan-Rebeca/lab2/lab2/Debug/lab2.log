@@ -1,5 +1,0 @@
-﻿  ui.c
-C:\Users\nelal\Desktop\sem2\object oriented programming\oop-labs\a3-4-911-Abrudan-Rebeca\lab2\lab2\ui.c(145,15): warning C4098: 'UpdateCountryUi': 'void' function returning a value
-C:\Users\nelal\Desktop\sem2\object oriented programming\oop-labs\a3-4-911-Abrudan-Rebeca\lab2\lab2\ui.c(167,15): warning C4098: 'UpdateCountryUi': 'void' function returning a value
-C:\Users\nelal\Desktop\sem2\object oriented programming\oop-labs\a3-4-911-Abrudan-Rebeca\lab2\lab2\ui.c(185,6): warning C4013: 'gets' undefined; assuming extern returning int
-  lab2.vcxproj -> C:\Users\nelal\Desktop\sem2\object oriented programming\oop-labs\a3-4-911-Abrudan-Rebeca\lab2\Debug\lab2.exe
