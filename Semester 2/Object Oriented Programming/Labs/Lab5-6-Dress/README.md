@@ -17,8 +17,7 @@
 - Solve all problem requirements
 - `DynamicVector` must be a templated class
 
-## Problem Statements
-
+## Problem Statement
 
 ## Proper Trench Coats
 Trench coats are cool. Everyone should own a trench coat. The *“Proper Trench Coats”* store sells fashionable, elegant trench coats and the store needs software to allow their customers to order online. The application can be used in two modes: administrator and user. When the application is started, it will offer the option to choose the mode.\
