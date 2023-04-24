@@ -1,0 +1,4 @@
+﻿  Source.c
+C:\Users\nelal\Desktop\a1-911-Abrudan-Rebeca\a1solution\Source.c(53,12): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\nelal\Desktop\a1-911-Abrudan-Rebeca\a1solution\Source.c(108): warning C4716: 'read_array': must return a value
+  a1solution.vcxproj -> C:\Users\nelal\Desktop\a1-911-Abrudan-Rebeca\a1solution\x64\Debug\a1solution.exe
