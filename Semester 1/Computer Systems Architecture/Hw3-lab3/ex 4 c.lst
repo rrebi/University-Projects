@@ -1,0 +1,90 @@
+     1                                  ; Write a program in the assembly language that computes the following arithmetic expression, considering the following data types for the variables:
+     2                                  ; b,c,d - byte; a - word; e - double word; x - qword; - Unsigned representation
+     3                                  ; (a * 2 + b / 2 + e) / (c - d) + x / a
+     4                                  ; ex: a = 3; b = 4; c = 10; d = 6; e = 8 => (6 + 2 + 8) / 4 + 9 / 3 = 4 + 3 = 7
+     5                                  bits 32 ;assembling for the 32 bits architecture
+     6                                  ; the start label will be the entry point in the program
+     7                                  global  start 
+     8                                  
+     9                                  extern  exit ; we inform the assembler that the exit symbol is foreign, i.e. it exists even if we won't be defining it
+    10                                  
+    11                                  import  exit msvcrt.dll; exit is a function that ends the process, it is defined in msvcrt.dll
+    12                                          ; msvcrt.dll contains exit, printf and all the other important C-runtime functions
+    13                                  segment  data use32 class=data ; the data segment where the variables are declared 
+    14 00000000 0300                    	a dw 3
+    15 00000002 04                          b db 4
+    16 00000003 0A                          c db 10
+    17 00000004 06                          d db 6
+    18 00000005 08000000                    e dd 8
+    19 00000009 0900000000000000            x dq 9
+    20                                      
+    21                                  segment  code use32 class=code ; code segment
+    22                                  start:
+    23                                      ;(a*2 + b/2 + e) / (c-d) + x/a
+    24 00000000 66A1[00000000]              mov ax, [a] ;ax = a
+    25 00000006 66BA0200                    mov dx, 2 ;dx = 2
+    26 0000000A 66F7E2                      mul dx ;dx:ax = ax * dx = a*2
+    27                                      
+    28 0000000D 6689C3                      mov bx, ax ;bx=ax
+    29                                      ;mov cx, dx ;cx=dx
+    30                                      
+    31 00000010 A0[02000000]                mov al, [b] ;al = b
+    32 00000015 B400                        mov ah, 0 ;converting al to ax
+    33 00000017 B202                        mov dl, 2 ;dl = 2
+    34 00000019 F6F2                        div dl ;al = ax/dl = b/2
+    35 0000001B B400                        mov ah, 0 ;converting al to ax
+    36 0000001D 66BA0000                    mov dx, 0 ;converting ax to dx:ax 
+    37                                      
+    38                                      
+    39 00000021 F8                          clc ;clear carry flag
+    40 00000022 6601D8                      add ax, bx
+    41                                      ;adc dx, cx ;ax = ax + bx + cf = a*2 + b/2
+    42                                      
+    43 00000025 6652                        push dx
+    44 00000027 6650                        push ax
+    45 00000029 5B                          pop ebx
+    46                                      
+    47 0000002A A1[05000000]                mov eax, [e] ;eax = e
+    48 0000002F 01C3                        add ebx, eax ; ebx = ebx + eax = a*2 + b/2 + e
+    49                                      
+    50                                      
+    51                                      
+    52 00000031 A0[03000000]                mov al, [c] ;al = c
+    53 00000036 2A05[04000000]              sub al, [d] ;al = c - d
+    54 0000003C B400                        mov ah, 0 ;converting al to ax
+    55 0000003E 66BA0000                    mov dx, 0 ;converting ax to dx:ax 
+    56                                      
+    57 00000042 6652                        push dx
+    58 00000044 6650                        push ax
+    59                                      
+    60 00000046 89D8                        mov eax, ebx ;eax=a*2 + b/2 + e
+    61 00000048 BA00000000                  mov edx, 0 ;converting eax to edx:eax
+    62                                      
+    63 0000004D 5B                          pop ebx
+    64 0000004E F7F3                        div ebx ;eax = edx:eax / ebx, edc = edx:eax % ebx ;eax=(s*2+b/2+e)/(c-d)
+    65                                      
+    66 00000050 89C3                        mov ebx, eax ;ebx=eax
+    67                                      ;mov ecx, edx ;ecx=edx
+    68                                      
+    69                                      
+    70 00000052 66A1[00000000]              mov ax, [a] ;ax = a
+    71 00000058 66BA0000                    mov dx, 0 ;converting ax to dx:ax
+    72 0000005C BA00000000                  mov edx, 0 ;converting eax to edx:eax
+    73                                      
+    74 00000061 6652                        push dx
+    75 00000063 6650                        push ax
+    76                                      
+    77 00000065 A1[09000000]                mov eax, dword [x] 
+    78                                      ;mov edx, dword [x+4] ;edx:eax = x
+    79                                      
+    80 0000006A 5C                          pop esp
+    81                                      
+    82 0000006B F7F4                        div esp ;eax = edx:eax / esp, edc = edx:eax % esp ;eax=x/a
+    83                                      
+    84 0000006D F8                          clc ;clear carry flag
+    85 0000006E 01C3                        add ebx, eax ;ebx = ebx + eax + cf =(a*2 + b/2 + e) / (c-d) + x/a 
+    86                                      ;adc ecx, edx 
+    87                                      
+    88                                      
+    89 00000070 6A00                        push   dword 0 ;saves on stack the parameter of the function exit
+    90 00000072 FF15[00000000]          	call   [exit] ; function exit is called in order to end the execution ofthe program

@@ -1,0 +1,57 @@
+     1                                  ;Two byte strings S1 and S2 are given, having the same length. Obtain the string D in the following way: each element found on the even positions of D is the sum of the corresponding elements from S1 and S2, and eac
+     2                                  bits 32 
+     3                                  global start        
+     4                                  extern exit ;printf ; tell nasm that exit exists even if we won't be defining it
+     5                                  import exit msvcrt.dll ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     6                                  ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+     7                                  ; our data is declared here (the variables needed by our program)
+     8                                  segment data use32 class=data
+     9 00000000 01020304                	s1 db 1, 2, 3, 4    ; declare the string of bytes
+    10                                      len equ $-s1      ; compute the length of the strings in l (they have the same length)
+    11 00000004 05060708                    s2 db 5, 6, 7, 8    ; declare the string of bytes
+    12                                  
+    13 00000008 00<rept>                	d times len db 0  ; reserve l bytes for the destination string and initialize it
+    14 0000000C 02                          doi db 2
+    15                                  segment code use32 class=code
+    16                                  start:
+    17 00000000 BE00000000              	mov esi, 0  ; gonna increment it at the end to get the next position   
+    18 00000005 B904000000              	mov ecx, len  ; we put the length l in ecx in order to make the loop
+    19                                   
+    20 0000000A E32A                    	jecxz end_loop      
+    21                                  	do:
+    22                                          
+    23 0000000C 8A96[00000000]                  mov dl, [s1+esi]    ; we move in al the element from s1
+    24 00000012 8A9E[04000000]                  mov bl, [s2+esi]    ; we move in bl the element from s2
+    25                                          
+    26 00000018 8A06                            mov al, [esi]
+    27                                          
+    28                                          ;test esi, 01h   ;0000 0001b
+    29                                          
+    30                                          ;jpo position_is_even     ; jump short if parity even pf = 1
+    31 0000001A B400                            mov ah, 0
+    32 0000001C F635[0C000000]                  div byte [doi] ; al has quotient; ah has reminder
+    33 00000022 80FC00                          cmp ah, 0
+    34                                          
+    35                                          ;if al is even add it to the sum, if al is odd skip it
+    36 00000025 7504                            jne itsodd
+    37 00000027 00DA                                add dl, bl  ; al = al + bl
+    38 00000029 EB02                                jmp end_if
+    39                                          ;position_is_even:
+    40                                          itsodd:
+    41                                          
+    42                                          ;jpe position_is_odd   ; pf = 0
+    43 0000002B 28DA                            sub dl, bl  ; al = al - bl 
+    44                                          ;position_is_odd:
+    45                                          
+    46                                          end_if:
+    47                                          
+    48 0000002D 8896[08000000]          		mov [d+esi], dl   ; we move in d the element from al
+    49                                          
+    50 00000033 46                      		inc esi    ; esi ++
+    51 00000034 E2D6                    	loop do
+    52                                  	end_loop:   ;end of the program
+    53                                  
+    54                                      
+    55                                  	; exit(0)
+    56 00000036 6A00                    	push dword 0 ; push the parameter for exit onto the stack
+    57 00000038 FF15[00000000]          	call [exit] ; call exit to terminate the program

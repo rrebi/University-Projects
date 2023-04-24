@@ -1,0 +1,98 @@
+     1                                  bits 32 
+     2                                  
+     3                                  global conversie      
+     4                                  
+     5                                  segment data use32 class=data
+     6 00000000 7C                          db '|'
+     7 00000001 00                          len db 0
+     8 00000002 7C                          db '|'
+     9 00000003 00                          cifra_8 db 0
+    10 00000004 7C                          db '|'
+    11                                  
+    12                                  segment code use32 class=code
+    13                                  		
+    14                                  	;|--------------|
+    15                                      ;| adresa retur |  <- [esp]
+    16                                      ;|--------------|
+    17                                      ;|      x       |  <- offsetul lui y, [esp+4]
+    18                                      ;|--------------|
+    19                                  	;|  	y       |  <- offsetul lui x, [esp+8]
+    20                                      ;|--------------|
+    21                                  	; Conversia unui nr din baza 2 in baza 8 citit ca string
+    22                                      conversie:
+    23                                          ; luam parametrii (x si y) din stack si punem adresele respective in ebx si ecx:
+    24 00000000 8B5C2404                		mov ebx, [esp+4] ; offsetul lui x
+    25 00000004 8B4C2408                		mov ecx, [esp+8] ; offsetul lui y
+    26                                         
+    27 00000008 BEFFFFFFFF              		mov esi, -1 ; contorul pt cifrele in baza 2
+    28                                  		; mov edi, 0
+    29                                  	numara:
+    30 0000000D 46                      		inc esi						; numar cate cifre sunt in baza 2
+    31 0000000E 803C3300                		cmp byte [ebx + esi], ""
+    32 00000012 75F9                    		jne numara
+    33                                          
+    34 00000014 31FF                            xor edi, edi
+    35                                          
+    36 00000016 6689F0                          mov ax, si
+    37 00000019 B203                            mov dl, 3
+    38 0000001B F6F2                            div dl
+    39 0000001D 80FC00                          cmp ah, 0
+    40 00000020 7405                            je nu_adauga
+    41 00000022 BF01000000                          mov edi, 1
+    42                                          nu_adauga:
+    43 00000027 30E4                            xor ah, ah
+    44 00000029 6601C7                          add di, ax
+    45                                          
+    46 0000002C C6040F00                        mov byte [edi + ecx], "" ; empty string ca sa stim cand se termina
+    47                                          
+    48                                      convertim_din_baza_2_in_baza_8: 		; cate o cifra
+    49 00000030 C605[01000000]00        		mov byte [len], 0 					; contor pt grup de 3 cifre
+    50 00000037 C605[03000000]00        		mov byte [cifra_8], 0
+    51                                  
+    52                                      bucla:
+    53 0000003E 807C33FF31                      cmp byte [ebx + esi - 1], "1"
+    54 00000043 752B                    		jne am_verificat_cifra_binara		; daca [x + esi - 1] nu este 1 at ax ramane la fel, altfel se modifica
+    55                                  		
+    56                                          ; verificam pozitia cifrei:
+    57 00000045 803D[01000000]00        		cmp byte [len], 0 ; = pozitia cifrei de 1 din x, daca prima cifra este 1 at add cifra_in_baza_8, 1		
+    58 0000004C 7509                    		jne a_2a_cifra		
+    59                                  	
+    60 0000004E 8005[03000000]01        		add byte [cifra_8], 1
+    61 00000055 EB19                    		jmp am_verificat_cifra_binara
+    62                                  	
+    63                                  	a_2a_cifra:
+    64 00000057 803D[01000000]01        		cmp byte [len], 1		; daca a 2 a cifra este 1 at add cifra_in_baza_8, 2
+    65 0000005E 7509                    		jne a_3a_cifra
+    66 00000060 8005[03000000]02        		add byte [cifra_8], 2
+    67 00000067 EB07                    		jmp am_verificat_cifra_binara
+    68                                  	
+    69                                  	a_3a_cifra:
+    70 00000069 8005[03000000]04        		add byte [cifra_8], 4		; daca a 3 a cifra este 1 at add cifra_in_baza_8, 4
+    71                                  		
+    72                                  	am_verificat_cifra_binara:
+    73 00000070 4E                      		dec esi
+    74 00000071 FE05[01000000]          		inc byte [len]
+    75 00000077 803D[01000000]03        		cmp byte [len], 3		; daca s-au verificat 3 cifre din baza 2 at scrie una in baza 8 
+    76 0000007E 7407                    		je scrie
+    77 00000080 83FE00                  		cmp esi, 0 		; daca nu mai sunt cifre in baza 2
+    78 00000083 7402                    		je scrie
+    79 00000085 EBB7                    		jmp bucla
+    80                                  		
+    81                                  	scrie:
+    82                                          ; adauga cifra in baza 8 in y:
+    83 00000087 A0[03000000]                    mov al, [cifra_8]
+    84 0000008C 0430                    		add al, "0"
+    85                                  		
+    86 0000008E 88440FFF                        mov byte [edi + ecx - 1], al
+    87 00000092 4F                              dec edi
+    88                                          
+    89 00000093 83FE00                          cmp esi, 0
+    90 00000096 7E02                    		jle final
+    91 00000098 EB96                    		jmp convertim_din_baza_2_in_baza_8
+    92                                  	
+    93                                  	final:
+    94                                  
+    95 0000009A C20800                  		ret 4*2
+    96                                  
+    97                                          
+    98                                          
