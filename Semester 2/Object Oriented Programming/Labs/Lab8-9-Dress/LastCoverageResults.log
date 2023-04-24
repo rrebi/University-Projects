@@ -1,0 +1,21 @@
+[2022-04-20 18:09:38] [info] Start Program:
+Path:"C:\Users\nelal\Desktop\A89-Dress\x64\Debug\A89-Dress.exe"
+Arguments:
+Working directory: "C:\Users\nelal\Desktop\A89-Dress\"
+Modules: Selected: C:\Users\nelal\Desktop\A89-Dress\x64\Debug\A89-Dress.exe Excluded: 
+Sources: Selected: C:\Users\nelal\Desktop\A89-Dress Excluded: 
+Log Level: Normal
+Cover Children: 0
+Aggregate by file: 1
+Continue after C++ exception: 0
+Optimized build support: 0
+Export: Binary C:\Users\nelal\AppData\Local\Temp\qboqfcm3.1sh 
+Input coverage: 
+Unified diff: 
+Excluded line regular expressions: 
+Substitute pdb source paths: 
+
+[2022-04-20 18:09:38] [info] Module: C:\Users\nelal\Desktop\A89-Dress\x64\Debug\A89-Dress.exe is selected because it matches selected pattern: C:\Users\nelal\Desktop\A89-Dress\x64\Debug\A89-Dress.exe
+[2022-04-20 18:09:38] [info] ----------------------------------------------------
+[2022-04-20 18:09:38] [info] Coverage binary generated in file: C:\Users\nelal\AppData\Local\Temp\qboqfcm3.1sh
+[2022-04-20 18:09:38] [info] ----------------------------------------------------

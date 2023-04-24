@@ -1,0 +1,10 @@
+Size: xs, Color: black, Price: 200, Quantity: 5, Photograph: https://google.ro
+Size: xs | Color: white | Price: 150 | Quantity: 8 | Photograph: https://google.ro
+Size: s | Color: red | Price: 50 | Quantity: 10 | Photograph: https://google.ro
+Size: s | Color: orange | Price: 200 | Quantity: 7 | Photograph: https://google.ro
+Size: m | Color: yellow | Price: 50 | Quantity: 5 | Photograph: https://google.ro
+Size: m | Color: green | Price: 150 | Quantity: 2 | Photograph: https://google.ro
+Size: l | Color: blue | Price: 150 | Quantity: 5 | Photograph: https://google.ro
+Size: l | Color: purple | Price: 50 | Quantity: 3 | Photograph: https://google.ro
+Size: xl | Color: pink | Price: 200 | Quantity: 5 | Photograph: https://google.ro
+Size: xl | Color: navy | Price: 25 | Quantity: 1 | Photograph: https://google.ro

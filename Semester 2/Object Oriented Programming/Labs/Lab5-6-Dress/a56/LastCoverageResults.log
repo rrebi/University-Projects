@@ -1,0 +1,21 @@
+[2022-04-13 17:09:47] [info] Start Program:
+Path:"C:\Users\nelal\Desktop\sem2\object oriented programming\oop-labs\a5-6-911-Abrudan-Rebeca\a56\x64\Debug\a56.exe"
+Arguments:
+Working directory: "C:\Users\nelal\Desktop\sem2\object oriented programming\oop-labs\a5-6-911-Abrudan-Rebeca\a56\"
+Modules: Selected: C:\Users\nelal\Desktop\sem2\object oriented programming\oop-labs\a5-6-911-Abrudan-Rebeca\a56\x64\Debug\a56.exe Excluded: 
+Sources: Selected: C:\Users\nelal\Desktop\sem2\object oriented programming\oop-labs\a5-6-911-Abrudan-Rebeca\a56 Excluded: 
+Log Level: Normal
+Cover Children: 0
+Aggregate by file: 1
+Continue after C++ exception: 0
+Optimized build support: 0
+Export: Binary C:\Users\nelal\AppData\Local\Temp\ohiglkz2.2yv 
+Input coverage: 
+Unified diff: 
+Excluded line regular expressions: 
+Substitute pdb source paths: 
+
+[2022-04-13 17:09:47] [info] Module: C:\Users\nelal\Desktop\sem2\object oriented programming\oop-labs\a5-6-911-Abrudan-Rebeca\a56\x64\Debug\a56.exe is selected because it matches selected pattern: C:\Users\nelal\Desktop\sem2\object oriented programming\oop-labs\a5-6-911-Abrudan-Rebeca\a56\x64\Debug\a56.exe
+[2022-04-13 17:09:48] [info] ----------------------------------------------------
+[2022-04-13 17:09:48] [info] Coverage binary generated in file: C:\Users\nelal\AppData\Local\Temp\ohiglkz2.2yv
+[2022-04-13 17:09:48] [info] ----------------------------------------------------
