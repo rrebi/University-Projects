@@ -1,0 +1,34 @@
+;b)Write a function to return the product of all numerical atoms in a list, at any level.
+
+;linearList (l1 l2 .. ln)
+;=nil, if n=0
+;=l1 U linearList (l2 ... ln), if l1 is atom
+;=linearList(l1) U linearList(l2 ... ln), otherwise
+
+(defun linearList (L) ;Transforming the list into a linear one
+(cond 
+    ((null L) nil)
+    ((atom (car L)) (cons (car L) (linearList (cdr L))))
+    ((listp (car L)) (append (linearList (car L)) (linearList (cdr L))))
+)
+)
+
+
+;product(l1 l2 ... ln)
+;= 1, if n = 0
+;= l1 * (product (l2 ... ln)), if n is number
+; = (product (l2 ... ln)), if n isn't number
+
+(defun product(L)
+(cond
+    ((null L) 1)
+    ((numberp (car L)) (* (car L) (product (cdr L)) ))
+    ((atom (car L)) (product (cdr L)))
+)
+)
+
+;10 (product (linearList '(2 1 b (b 5 d)))))
+
+
+;(write (product (linearList '(1 2 3 b (2 4 c b)))))
+

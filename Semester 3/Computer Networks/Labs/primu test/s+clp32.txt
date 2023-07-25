@@ -1,0 +1,85 @@
+  GNU nano 6.2                              server32_t.py                                       
+import socket
+import struct
+
+s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+s.bind(("0.0.0.0",1113))
+
+s.listen(5)
+cs, addr = s.accept()
+
+buff = "Rebi mea e frumoasa"
+
+cs.send(buff.encode('ascii'))
+
+#nr=cs.recv(4)
+
+#nr_decoded=struct.unpack("!I",nr)
+
+while True:
+        nr=cs.recv(4)
+        nr_decoded=struct.unpack("!I",nr)[0]
+        print(nr_decoded)
+        if nr_decoded == 8:
+                msg = "AI GHICIT"
+                cs.send(msg.encode('ascii'))
+                break
+        else:
+                msg = "MAI INCEARCA"
+                cs.send(msg.encode('ascii'))
+
+
+cs.close()
+
+
+
+
+
+client
+
+import socket
+import struct
+
+"""
+! - (from or to) network
+c - char
+h - short
+H - unsigned short
+i - int
+I - unsigned int
+q - long long
+Q - unsigned long long
+f - float
+d - double
+"""
+
+s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+s.connect(("192.168.163.130",1113))
+
+buff=""
+
+buff = s.recv(1024)
+buff_decoded = buff.decode('ascii')
+
+print(buff_decoded)
+
+#str
+#msg="alo"
+#s.send(msg.encode('ascii'))
+
+
+while True:
+    nr = int(input("Nr tau este: "))
+
+    s.send(struct.pack("!I", nr))
+
+    msg = s.recv(1024)
+    msg_decode = msg.decode('ascii')
+    print(msg_decode)
+    if (msg_decode=="AI GHICIT"):
+        break
+
+s.close()
+

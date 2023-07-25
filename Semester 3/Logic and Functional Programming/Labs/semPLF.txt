@@ -1,0 +1,50 @@
+1. Remove all occurances of an elem from a nonlinear list using map funct
+
+(1 2 (3 4 1)) -> (() 2 ((3)(4)())) -> () 92) ((3 4)) -> ((2(3 4))) e=1
+
+removeAll(L, elem)={ (), if L is atom and L=elem
+		     (L), if L is atom and L != elem
+		     removeAll(l1,elem) reunit ... removeAll(ln,elem), if L is a list
+
+(defun removeAll (L elem)
+	(cond
+		((and(atom L) (equal L elem)) nil)
+		((atom L) (list L))
+		(t (list(apply #' append (mappcar #' lambda(a)(removeAll L elem))))
+	)
+)
+
+
+2. all subsets with at least 2 elem; dif between any 2 cons elem is a multiply of 3
+[3 4 6] -> [3 6]
+
+subsets(l1l2..ln)={ l1 reunit subsets(l2...ln), n>0
+		    subsets(l2..ln), n>0
+		    (), n=0
+
+check(l1..ln)={ check(l2..ln), abs(l1-l2)%3==0), n>=2
+		F, abs(l1,l2)%3!=0 and n>=2
+		T, n=1
+
+flow model!!
+
+subsets(L-input, list, R-output list)
+subsets(i,o),(i,i)
+subsets([],[]).
+subsets([_|T], R):- subsets(T,R).
+subsets([H|T],[H|R]):-subsets(T,R).
+
+check(L-list)
+check(i)
+check([_]).
+check(H1,H2|T]):
+	abs(H1-H2) mod 3 =:=0,
+	check([H2|T]).
+
+
+onesol(l1..ln)={P, P=subset(l1...ln) and check(P)
+
+onesol(L-list, R-list)
+onesol(i,o)
+onesol(
+

@@ -1,0 +1,23 @@
+import socket
+s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+
+s.connect(("192.168.163.130",7777))
+aux=str.encode("5")
+s.send(aux)
+print (s.recv(10))
+s.close()
+
+
+
+server
+
+import socket
+s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+s.bind(("0.0.0.0",7777))
+s.listen(5)
+cs,addr=s.accept()
+b=cs.recv(10)
+print b
+cs.send("Hello")
+cs.close()
+

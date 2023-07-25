@@ -1,0 +1,34 @@
+import socket
+import struct
+
+#thread nou la amanoi comunic prin udp chat type la infinit in while
+
+s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+s.bind(("0.0.0.0",1113))
+
+s.listen(5)
+cs, addr = s.accept()
+
+buff = "Cati membri are formatia Beatles"
+
+cs.send(buff.encode('ascii'))
+
+#nr=cs.recv(4)
+
+#nr_decoded=struct.unpack("!I",nr)
+
+while True:
+        nr=cs.recv(4)
+        nr_decoded=struct.unpack("!I",nr)[0]
+        print(nr_decoded)
+        if nr_decoded == 4:
+                msg = "AI GHICIT"
+                cs.send(msg.encode('ascii'))
+                break
+        else:
+                msg = "MAI INCEARCA"
+                cs.send(msg.encode('ascii'))
+
+
+cs.close()

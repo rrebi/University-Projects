@@ -1,0 +1,52 @@
+%a
+% myLength(L:list, R:number)
+% (i,o)
+
+myLength([],0).
+myLength([_|T],R1):-
+    myLength(T,R),
+    R1 is R + 1.
+
+% contains(L:list,E:number)
+% (i,i)
+
+contains([V|_],V):-!.
+contains([_|T],V):-
+    contains(T,V).
+
+% removeElement(L:list, E:number, R:list)
+%(i,i,o)
+
+removeElement([],_,[]).
+removeElement([H|T],E,R):-
+    H=:=E,
+    removeElement(T,E,R).
+removeElement([H|T],E,[H|R]):-
+    H=\=E,
+    removeElement(T,E,R).
+
+% equalitySets(L:list,P:list)
+% (i,i)
+
+equalitySets([],[]):-!.
+equalitySets([H1|T1],[H2|T2]):-
+    myLength(T1,C1),
+    myLength(T2,C2),
+    C1=:=C2,
+    contains([H1|T1],H2),
+    contains([H2|T2],H1),
+    removeElement(T1,H2,RE1),
+    removeElement(T2,H1,RE2),
+    equalitySets(RE1,RE2).
+
+
+
+
+%b
+% selectElem(L:list, N:number,R:number)
+% (i,i,o)
+
+selectElem([H|_],1,H):-!.
+selectElem([_|T],N,R):-
+    N1 is N-1,
+    selectElem(T,N1,R).

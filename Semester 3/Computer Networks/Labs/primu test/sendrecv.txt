@@ -1,0 +1,39 @@
+import socket
+import time
+import threading
+import sys
+
+# Function for receiving
+def receiver():
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.bind(("172.30.118.76 ", 1113)) #binding the IP address and port number
+    while True:
+        msg = s.recvfrom(1024)
+        print("\n"+msg[0].decode())
+        if "exit" in msg[0].decode() or "bye" in msg[0].decode():
+            sys.exit()
+
+
+
+#Function for sending
+def sender():
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    text = "hello"
+    while True:
+        if "bye" in text or "exit" in text or "finish" in text:
+            exit()
+        else:
+            text = input(f'{name}:')
+            text = name+":"+text
+            s.sendto(text.encode(), ("172.30.112.134", 1113))
+
+print("Initializing....")
+name = input("Enter your name: ")
+print("Waiting for client....")
+time.sleep(1)
+print("Connection established....")
+# Using Multi-threading
+send = threading.Thread(target=sender)
+receive = threading.Thread(target=receiver)
+send.start()
+receive.start()

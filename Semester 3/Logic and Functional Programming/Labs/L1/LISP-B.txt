@@ -1,0 +1,29 @@
+;Determine the list of nodes accesed in inorder in a tree of type (2)
+;type 1 -> (A (B) (C (D) (E))) -> (node (list subtree1) (list subtree2)...)
+
+;myAppend(l1 l2 ... ln, p1 p2 ... pm)
+;=p1 p2 ... pm, if  n = 0
+;=l1 U myAppend(l2 ... ln, p1 p2 ... pm), otherwise
+
+(defun myAppend(L P)
+(cond
+    ((null L) P)
+    (t (cons (car L) (myAppend (cdr L) P)))
+)
+)
+
+;inorder(l1l2l3)
+;=nil, n=null
+;=MyAppend(inorder(l2),MyAppend(inorder(l1), inorder(l3)))
+
+(defun inOrder(L)
+(cond
+    ((null L) nil)
+    (t (myAppend (inorder(cadr L)) (myAppend (list(car L)) (inorder(caddr L)))))
+)
+)
+
+;(B A D C E) (inOrder => (A (B) (C (D) (E)))))
+
+;(write (inOrder '(A (B) (C (D) (E)))))
+

@@ -1,0 +1,52 @@
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+#include <stdio.h>
+#include <unistd.h> 
+#include <string.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main(){
+        int sd=socket(AF_INET, SOCK_STREAM, 0);
+         if(sd<0){
+                perror("Error creating socket\n");
+                exit(1);
+        }
+         printf("Socket created successfully\n");
+        
+	struct sockaddr_in svr;
+        svr.sin_family=AF_INET;
+        svr.sin_port=htons(1234);
+
+        char ADDRESS[256]="192.168.1.191";
+        inet_aton(ADDRESS,&svr.sin_addr);
+        socklen_t svr_len=sizeof(svr);
+
+        int rez=connect(sd, (struct sockaddr*)&svr, svr_len);
+        if(rez<0){
+                perror("client: connection failed\n");
+                return -1;
+        }
+        printf("connected successfully to server!\n");
+
+
+        uint16_t numar, numar_primit;
+
+        printf("Dati numarul = ");
+
+        scanf("%hu", &numar);
+        numar = htons(numar); 
+
+        send(sd, &numar,sizeof(numar),0);
+
+        recv(sd, &numar_primit, sizeof(numar_primit),0);
+
+        printf("client -> am primit nr %d\n", numar_primit);
+        close(sd);     
+        return 0;
+
+}
+
+char sir[100];
+recv(sock, sir, strlen(sir),0)
