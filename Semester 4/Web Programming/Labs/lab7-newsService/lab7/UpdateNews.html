@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Update News</title>
+  <link rel="stylesheet" href="UpdateNews.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+  <h1 id="Title">Update News</h1>
+  <hr class="style13">
+  <div class="formDIV">
+    <form method="POST" action="UpdateNews.php">
+      <label for="Title">Title:</label>
+      <br>
+      <input type="text" name="Title" required>
+      <br>
+      <br>
+      <label for="Producer">Producer:</label>
+      <br>
+      <input type="text" name="Producer" required>
+      <br>
+      <br>
+      <label for="Text">Text:</label>
+      <br>
+      <textarea name="Text" required></textarea>
+      <br>
+      <br>
+      <label for="Date">Date:</label>
+      <br>
+      <input type="date" name="Date" required>
+      <br>
+      <br>
+      <label for="Category">Category:</label>
+      <br>
+      <input type="text" name="Category" required>
+      <br>
+      <br>
+      <input type="submit" value="Update News" class="myButton" onclick="return confirm('Are you sure you want to update this news?')">
+    </form>
+  </div>
+  <hr class="style13">
+  <div class="navbar">
+    <a href="login.html">Login</a>
+    <a href="AddNews.html">Add News</a>
+    <a href="ViewAll.html">Update News</a>
+    <a href="ViewByDate.html">View News by Date</a>
+    <a href="ViewByCategory.html">View News by Category</a>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>View News by Date</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="ViewByCategory.css">
+</head>
+<body>
+  <h1 id="Title">View News by Category</h1>
+  <hr class="style13">
+  <form id="search-form" action="ViewByCategory.php" method="GET">
+    <label for="filter-by-category">Filter by Category:</label>
+    <br>
+    <input type="text" id="filter-by-category">
+    <br>
+    <br>
+    <input type="submit" value="Search" class="myButton">
+  </form>
+  <br>
+  <div id="results"></div>
+  <div id="filter-history"></div>
+  <div class="">
+    <hr class="style13">
+    <nav class="navbar">
+      <a href="login.html">Login</a>
+      <a href="AddNews.html">Add News</a>
+      <a href="ViewAll.html">Update News</a>
+      <a href="ViewByDate.html">View News by Date</a>
+      <a href="ViewByCategory.html">View News by Category</a>
+    </nav>
+  </div>
+  <script>
+    $(function() {
+      // declare an array to store the filter history
+      var filterHistory = [];
+
+      $('#search-form').submit(function(event) {
+        event.preventDefault();
+        var category = $('#filter-by-category').val();
+
+        $.ajax({
+          type: 'GET',
+          url: 'ViewByCategory.php',
+          data: {
+            filter_by_category: category
+          },
+          dataType: 'json',
+            success: function(data) {
+            if (data.hasOwnProperty('message')) {
+              // Display the message if no records are found
+              $('#results').html(data.message);
+            } else {
+              // Display the table if records are found
+
+              // Display the filter history on the page
+              $('#filter-history').html('Filter history: ' + filterHistory.join(' | '));
+
+              // Add the current filter to the filter history array
+              filterHistory.push('Category filtered by: ' + category);
+
+              // Build the table to display the search results
+              var table = '<table>';
+              table += '<tr><th>Title</th><th>Producer</th><th>Text</th><th>Date</th><th>Category</th></tr>';
+              $.each(data, function(index, entry) {
+                table += '<tr>';
+                table += '<td>' + entry.title + '</td>';
+                table += '<td>' + entry.producer + '</td>';
+                table += '<td>' + entry.text + '</td>';
+                table += '<td>' + entry.date + '</td>';
+                table += '<td>' + entry.category + '</td>';
+                table += '</tr>';
+              });
+              table += '</table>';
+              $('#results').html(table);
+            }
+          },
+          error: function(xhr, status, error) {
+            console.log("Error: " + error.message);
+            $('#results').html('Error retrieving data: ' + error.message);
+          }
+        });
+      });
+
+
+      // display the previous filter used, if available
+      var previousFilter = localStorage.getItem('previousFilter');
+      if (previousFilter) {
+        $('#filter-by-category').val(previousFilter);
+      }
+
+      $('#filter-by-category').on('input', function() {
+        var currentFilter = $(this).val();
+        localStorage.setItem('previousFilter', currentFilter);
+      });
+    });
+  </script>
+</body>
+</html>
