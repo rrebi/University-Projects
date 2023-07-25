@@ -1,0 +1,92 @@
+vim hello.c
+i 
+type 
+ESC : w enter
+i
+type
+esc : x enter
+gcc -Wall -g -o hello hello.c
+./hello
+
+ESC gg=G (to 
+
+man 2 open (to find the libraries)
+whatis read
+man 2 read
+
+
+
+29.03.2022
+file = readable => who should be able to read it? current reader
+
+how to read user input? => command read
+while read input...... variable => user is in a variable
+it is five lines script
+
+
+5.04.2022
+command on board->
+find ~ -type t -name "*.c"
+	     d
+
+read from an empty file -> it waits until the data arrives or for no writer to be connected
+write in a full file -> it waits until some space is made or for no reader to be connected
+open ..
+
+close every pipe as soon as possible
+
+1.
+problem statement: implement a program that cont reads 2 int from the console, 
+sends them to another process, 
+gets back their sum and product and displays them in the console.
+if the sum and prod are == it stops. Implement with pipe and fifo
+
+console->4,3->A->4,3->B->7,12->A
+
+PIPE problem1.
+parent ->reads console
+child ->reads pipe
+
+	p2c
+p		c (arrows in a circle->->)
+	c2p
+
+inifinte loops in both(p,c)
+for p
+scanf
+scanf
+write
+write (it gets to p2c)
+read 
+read (from ..)
+printf
+if ==
+break (NO exit so it can wait)
+(then loops again)
+
+for c
+read 
+read
++
+*
+write 
+write
+if ==
+break (not exit so it can call the pipes)
+(then loop again)
+
+
+for fi
+same
+
+THEORY
+when you call pipe
+process A which calls pipe
+it creates a buffer in kernerl (a square) which is a file desc. for reading (0) and writing(1)
+=> it gives you 2file descript.
+
+
+PRINTF ALWAYS newline at the end \n
+
+gets
+sscanf (if probl)

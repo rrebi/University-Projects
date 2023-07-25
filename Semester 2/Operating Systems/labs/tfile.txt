@@ -1,0 +1,60 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<pthread.h>
+
+typedef struct{
+char* name;
+int n;
+}args;
+
+pthread_mutex_t mtx;
+int c=0;
+
+void* f(void*a){
+args local=*(*args*)a;
+FILE* f=fopen(local.name,"r");
+
+if(f==NULL){ perror("f doesn't exist!");
+	     exti(1);
+}
+
+int nr;
+int i=0;
+while(i<local.n){
+	if(fscanf(f,"%d",&nr)!=EOF){
+		if(nr%2==0){i++;
+			pthread_mutex_lock(&mtx);
+			x=x+nr;
+			pthread_mutex_unlock(&mtx);
+}}}
+fclose(f);
+return NULL
+}
+
+
+int main(int argc, char** argv){
+
+int i;
+pthread_mutex_init(&mtx,NULL);
+
+pthread_t *t=(pthread_t*)malloc(sizeof(pthread_t)*(argc/2));
+args* arg=(args*)malloc(sizeof(args*)*(argc));
+
+for(i=1;i<argc;i=i+2){
+	arg[i/2].name=argv[i];
+	arg[i/2].n=atoi(argv[i+1]);
+}
+
+for(i=0;i<argc/2;i++){
+pthread_create(&t[i],NULL,f,&arg[i]);}
+
+for(i=0;i<argc/2;i++){
+pthread_join(t[i],NULL);}
+
+printf("%d\n",x);
+
+free(t); free(arg);
+pthread_mutex_destroy(&mtx);
+return 0;
+
+}

@@ -1,0 +1,54 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<pthread.h>
+
+typedef struct{
+int a;
+int b;
+}pthread_arg;
+
+typedef struct{
+int sum;
+int prod;
+}pthread_ret;
+
+void* f(void*a){
+pthread_arg aux=*(pthread_arg*)a;
+
+printf("i=%d\n",aux.a);
+printf("i*10=%d\n",aux.b);
+
+pthread_ret* r = malloc(sizeof(pthread_ret));
+r->sum=aux.a+aux.b;
+r->prod=aux.a*aux.b;
+
+free(a);
+return (void*)r;
+return NULL;
+}
+
+int main(int argc, char** argv){
+
+pthread_t t[10];
+pthread_ret** r;
+r=malloc(sizeof(pthread_ret)*10);
+int i,n=1;
+
+if(argc>1){sscanf(argv[1],"%d",&n);
+}
+
+for(i=0;i<n;i++){
+pthread_arg* arg-(pthread_arg*)malloc(sizeof(pthread_arg));
+arg->a=i; arg->b=i*10;
+pthread_create(&t[i],NULL,f,arg);
+}
+
+for(i=0;i<n;i++){
+pthread_join(t[i],(void*)&r[i]);}
+
+for(i=0;i<n;i++){
+printf("Thread %d had a sum of %d and a prod of %d\n",i,r[i]->sum,r[i]->prod);
+free(r[i]);}
+
+free(r);
+return 0;

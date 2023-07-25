@@ -1,0 +1,64 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<pthread.h>
+#inlcude<time.h>
+
+int* dollars;
+pthread_barrier_t barrier;
+pthread_mutex_t mtx;
+
+int p,n;
+
+void* thread(void* a){
+int local_n=n;
+int local=*(int* a);
+
+while(local_n>)){
+pthread_mutex_lock(&mtx);
+
+int x=rand();
+dollars[local]+=x%20;
+dollars[(local+1)%p]-=x%20;
+
+pthread_mutex_unlock(&mtx);
+pthread_barrier_wait(&barrier);
+local_n-=1;
+printf("dollars de %d=%d\n", local, dollars[local]);
+}
+
+free(a); return NULL;}
+
+
+int main(int argc, char** argv){
+n=0;
+srand(time(NULL));
+if(argc>2){p=atoi(argv[1]);
+n=atoi(argv[2]);}
+
+pthread_barrier_init(&mtx, NULL,p);
+pthread_mutex_init(&mtx, NULL);
+
+printf("%d %d\n",p,n);
+
+pthread_t* t;
+t=(pthread_t*)malloc(sizeof(pthread_t)*p);
+dollars = (int*)malloc(sizeof(int)*p);
+
+int i;
+for(i=0;i<p;i++){
+dolars[i]=100;}
+
+for(i=0;i<p;i++){
+int* a;
+a=(int +*)malloc(sizeof(int));
+*a=i;
+pthread_create(&t[i],NULL,thread,(void*)a);}
+
+for(i=0;i<p;i++){
+pthread_joid(t[i],NULL);}
+
+pthread_barrier_destroy(&barrier);
+pthread_mutex_destroy(&mtx);
+free(t);
+free(dollars);
+return 0;}
