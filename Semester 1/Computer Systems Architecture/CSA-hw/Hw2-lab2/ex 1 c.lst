@@ -1,0 +1,38 @@
+     1                                  ; Write a program in the assembly language that computes the following arithmetic expression, considering the following data types for the variables:
+     2                                  ; a, b, c - byte, d - word
+     3                                  ; ((a+b-c)*2 + d-5)*d
+     4                                  ; ex. 1: a = 10; b = 5; c = 9; d = 2 Result: ((10+5-9)*2+2-5)*2=(6*2+2-5)*2=(12+2-5)*2=9*2=18
+     5                                  
+     6                                  bits 32 ;assembling for the 32 bits architecture
+     7                                  ; the start label will be the entry point in the program
+     8                                  global  start 
+     9                                  
+    10                                  extern  exit ; we inform the assembler that the exit symbol is foreign, i.e. it exists even if we won't be defining it
+    11                                  
+    12                                  import  exit msvcrt.dll; exit is a function that ends the process, it is defined in msvcrt.dll
+    13                                          ; msvcrt.dll contains exit, printf and all the other important C-runtime functions
+    14                                  segment  data use32 class=data ; the data segment where the variables are declared 
+    15 00000000 0A                      	a  db 10
+    16 00000001 05                      	b  db 5
+    17 00000002 09                          c  db 9
+    18 00000003 0200                        d  dw 2
+    19                                  segment  code use32 class=code ; code segment
+    20                                  start: 
+    21 00000000 A0[00000000]            	mov AL, [a] ;AL=a
+    22 00000005 0205[01000000]              add AL, [b] ;AL=AL+b=a+b
+    23 0000000B 2A05[02000000]              sub AL, [c] ;AL=AL-c=a+b-c
+    24 00000011 B102                        mov CL, 2 ;CL=2
+    25 00000013 F6E1                        mul CL  ;AX=AL*CL=(a+b-c)*2
+    26                                  	
+    27 00000015 660305[03000000]            add AX, [d] ;AX=AX+d=(a+b-c)*2+d
+    28 0000001C 6683E805                    sub AX, 5 ;AX=AX-5=(a+b-c)*2+d-5
+    29                                      
+    30 00000020 668B0D[03000000]            mov CX, [d]
+    31 00000027 66F7E1                      mul CX
+    32                                      
+    33 0000002A 6651                        push CX
+    34 0000002C 6650                        push AX
+    35 0000002E 58                          pop EAX
+    36                                      
+    37 0000002F 6A00                    	push   dword 0 ;saves on stack the parameter of the function exit
+    38 00000031 FF15[00000000]          	call   [exit] ; function exit is called in order to end the execution of the program

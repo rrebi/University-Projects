@@ -1,0 +1,55 @@
+     1                                  bits 32 
+     2                                  global start        
+     3                                  extern exit ;printf ; tell nasm that exit exists even if we won't be defining it
+     4                                  import exit msvcrt.dll ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     5                                  ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+     6                                  ; our data is declared here (the variables needed by our program)
+     7                                  
+     8                                  
+     9                                  ;Two byte strings S1 and S2 are given, having the same length. Obtain the string D in the following way: each element found on the even positions of D is the sum of the corresponding elements from S1 and S2, and eac
+    10                                  ;S1: 1, 2, 3, 4
+    11                                  ;S2: 5, 6, 7, 8
+    12                                  ;D: 6, -4, 10, -4
+    13                                  
+    14                                  segment data use32 class=data
+    15 00000000 01020304                	s1 db 1, 2, 3, 4    ; declare the string of bytes
+    16                                      len equ $-s1        ; compute the length of the strings in l (they have the same length)
+    17 00000004 05060708                    s2 db 5, 6, 7, 8    ; declare the string of bytes
+    18                                  
+    19 00000008 00<rept>                	d times len db 0    ; reserve l bytes for the destination string and initialize it
+    20                                  segment code use32 class=code
+    21                                  start:
+    22 00000000 BE00000000              	mov esi, 0    ; gonna increment it at the end to get the next position   
+    23 00000005 B904000000              	mov ecx, len  ; we put the length l in ecx in order to make the loop
+    24                                          
+    25 0000000A E323                    	jecxz end_loop      
+    26                                  	do:
+    27                                          
+    28 0000000C 8A86[00000000]                  mov al, [s1+esi]    ; we move in al the element from s1
+    29 00000012 8A9E[04000000]                  mov bl, [s2+esi]    ; we move in bl the element from s2
+    30                                          
+    31                                          
+    32 00000018 F7C601000000                    test esi, 01h   ;0000 0001b
+    33                                          
+    34 0000001E 7B04                            jpo position_is_even  ; pf = 1
+    35 00000020 00D8                                add al, bl  ; al = al + bl
+    36 00000022 EB02                                jmp end_if
+    37                                          position_is_even:
+    38                                          
+    39                                          
+    40                                          ;jpe position_is_odd   ; pf = 0
+    41 00000024 28D8                            sub al, bl  ; al = al - bl 
+    42                                          ;position_is_odd:
+    43                                          
+    44                                          end_if:
+    45                                          
+    46 00000026 8886[08000000]          		mov [d+esi], al   ; we move in d the element from al
+    47                                          
+    48 0000002C 46                      		inc esi    ; esi ++
+    49 0000002D E2DD                    	loop do
+    50                                  	end_loop:   ;end of the program
+    51                                  
+    52                                      
+    53                                  	; exit(0)
+    54 0000002F 6A00                    	push dword 0 ; push the parameter for exit onto the stack
+    55 00000031 FF15[00000000]          	call [exit] ; call exit to terminate the program
