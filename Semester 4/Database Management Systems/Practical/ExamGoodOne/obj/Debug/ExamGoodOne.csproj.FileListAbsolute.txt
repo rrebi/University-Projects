@@ -1,0 +1,11 @@
+C:\Users\nelal\Desktop\ExamGoodOne\bin\Debug\ExamGoodOne.exe.config
+C:\Users\nelal\Desktop\ExamGoodOne\bin\Debug\ExamGoodOne.exe
+C:\Users\nelal\Desktop\ExamGoodOne\bin\Debug\ExamGoodOne.pdb
+C:\Users\nelal\Desktop\ExamGoodOne\obj\Debug\ExamGoodOne.csproj.AssemblyReference.cache
+C:\Users\nelal\Desktop\ExamGoodOne\obj\Debug\ExamGoodOne.csproj.SuggestedBindingRedirects.cache
+C:\Users\nelal\Desktop\ExamGoodOne\obj\Debug\ExamGoodOne.Form1.resources
+C:\Users\nelal\Desktop\ExamGoodOne\obj\Debug\ExamGoodOne.Properties.Resources.resources
+C:\Users\nelal\Desktop\ExamGoodOne\obj\Debug\ExamGoodOne.csproj.GenerateResource.cache
+C:\Users\nelal\Desktop\ExamGoodOne\obj\Debug\ExamGoodOne.csproj.CoreCompileInputs.cache
+C:\Users\nelal\Desktop\ExamGoodOne\obj\Debug\ExamGoodOne.exe
+C:\Users\nelal\Desktop\ExamGoodOne\obj\Debug\ExamGoodOne.pdb
