@@ -1,0 +1,39 @@
+<div class="container">
+  <h2>Add News</h2>
+  <form #newsForm="ngForm" novalidate (ngSubmit)="handleAdd()">
+
+    <div class="form-group">
+      <label>Text</label>
+      <input type="text" class="form-control" name="text" placeholder="Enter text..." required
+             [(ngModel)]="news.Text" ngModel>
+    </div>
+
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" class="form-control" name="title" placeholder="Enter title..." required
+             [(ngModel)]="news.Title" ngModel>
+    </div>
+
+    <div class="form-group">
+      <label>Producer</label>
+      <input type="text" class="form-control" name="producer" placeholder="Enter producer..." required
+             [(ngModel)]="news.Producer" ngModel>
+    </div>
+
+    <div class="form-group">
+      <label>Date</label>
+      <input type="date" class="form-control" name="date" placeholder="Enter date..." required
+             [(ngModel)]="news.Date" ngModel>
+    </div>
+
+    <div class="form-group">
+      <label>Category</label>
+      <input type="text" class="form-control" name="category" placeholder="Enter category..." required
+             [(ngModel)]="news.Category" ngModel>
+    </div>
+
+    <button class="btn btn-dark" type="submit" [disabled]="newsForm.form.invalid">Add</button>
+
+  </form>
+
+</div>

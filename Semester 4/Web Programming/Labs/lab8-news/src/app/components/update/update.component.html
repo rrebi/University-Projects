@@ -1,0 +1,53 @@
+
+<div id="results">
+    <table>
+      <tr>
+        <th>Title</th>
+        <th>Text</th>
+        <th>Producer</th>
+        <th>Date</th>
+        <th>Category</th>
+      </tr>
+      <tr *ngFor="let news of news" (click)="selectNews(news)">
+        <td>{{ news.Title }}</td>
+        <td>{{ news.Text }}</td>
+        <td>{{ news.Producer }}</td>
+        <td>{{ news.Date }}</td>
+        <td>{{ news.Category }}</td>
+      </tr>
+    </table>
+  </div>
+  
+  <h1 id="UpdateText">Update Entry</h1>
+  <hr class="style13">
+  <div class="formDIV">
+    <form id="updateForm" (ngSubmit)="updateEntry()" #updateForm="ngForm">
+      <label for="Title">Title:</label>
+      <br>
+      <input type="text" id="updateTitle" name="Title" required [(ngModel)]="selectedNews.Title">
+      <br>
+      <br>
+      <label for="Text">Text:</label>
+      <br>
+      <input type="text" id="updateText" name="Text" required [(ngModel)]="selectedNews.Text">
+      <br>
+      <br>
+      <label for="Producer">Producer:</label>
+      <br>
+      <textarea id="updateProducer" name="Producer" required [(ngModel)]="selectedNews.Producer"></textarea>
+      <br>
+      <br>
+      <label for="Date">Date:</label>
+      <br>
+      <input type="date" id="updateDate" name="Date" required [(ngModel)]="selectedNews.Date">
+      <br>
+      <br>
+      <label for="Category">Category:</label>
+      <br>
+      <input type="category" id="updateCategory" name="Category" required [(ngModel)]="selectedNews.Category">
+      <br>
+      <br>
+      <input type="submit" value="Update" class="myButton" (click)="confirmUpdate()">
+    </form>
+  </div>
+  

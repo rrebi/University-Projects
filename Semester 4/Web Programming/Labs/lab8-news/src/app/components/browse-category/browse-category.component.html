@@ -1,0 +1,33 @@
+<h1 id="Title">News</h1>
+<hr class="style13">
+<form (ngSubmit)="searchNews()" #searchForm="ngForm">
+  <label for="filter-by-category">Filter by Category:</label>
+  <br>
+  <input type="text" id="filter-by-category" name="category" [(ngModel)]="filterByCategory">
+  <br>
+  <br>
+  
+  <button type="submit" class="myButton">Search</button>
+</form>
+<br>
+<div id="results">
+  <p *ngIf="previousFilters.length > 0">
+    Previous Filters: {{ previousFilters.slice(0, previousFilters.length - 1).join(', ') }}
+  </p>
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Text</th>
+      <th>Producer</th>
+      <th>Date</th>
+      <th>Category</th>
+    </tr>
+    <tr *ngFor="let newsItem of news">
+      <td>{{ newsItem.Title }}</td>
+      <td>{{ newsItem.Text }}</td>
+      <td>{{ newsItem.Producer }}</td>
+      <td>{{ newsItem.Date }}</td>
+      <td>{{ newsItem.Category }}</td>
+    </tr>
+  </table>
+</div>

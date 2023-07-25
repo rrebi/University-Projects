@@ -1,0 +1,23 @@
+<br>
+<nav class="navbar">
+    <li><a class="active" routerLink="/" (click)="makeButtonActive('home')"
+        [ngClass]="{'active': active === 'home'}">Home</a></li>
+
+    <li><a class="active" routerLink="/addnews" (click)="makeButtonActive('add')"
+        [ngClass]="{'active': active === 'add'}">Add news</a></li>
+
+    <li><a class="active" routerLink="/updatenews" (click)="makeButtonActive('update')"
+        [ngClass]="{'active': active === 'update'}">Update news</a></li>
+
+    <li><a class="active" routerLink="/browsenews" (click)="makeButtonActive('browse-category')"
+        [ngClass]="{'active': active === 'browse-category'}">Browse News</a></li>
+        
+    <li><a class="active" routerLink="/browsenewsdate" (click)="makeButtonActive('browse-date')"
+        [ngClass]="{'active': active === 'browse-date'}">Browse Date</a></li>
+
+    <li><a class="active" routerLink="/login" (click)="makeButtonActive('login')"
+        [ngClass]="{'active': active === 'Login'}">Login</a></li>    
+
+   
+
+</nav>
