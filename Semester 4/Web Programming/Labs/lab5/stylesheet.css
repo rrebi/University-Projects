@@ -1,0 +1,26 @@
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+.dragZone{
+    background-color: rgb(181, 218, 201);
+    width: 100px;
+    height: 100px;
+    padding: 250px;
+}
+
+#purple{
+    background-color: rgb(211, 188, 232);
+    border:1px solid rgb(79, 78, 78);
+}
+
+.dropZone {
+    background-color: rgb(158, 182, 189);
+    width: 100px;
+    height: 100px;
+    padding: 250px;
+}

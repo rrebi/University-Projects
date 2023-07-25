@@ -1,0 +1,24 @@
+h1 {
+   text-align: center;
+   font-size: 40px;
+}
+
+#tiles {
+   width: 400px;
+   margin: 0 auto;
+   background-color: white;
+   border-radius: 5px;
+}
+
+.selected {
+   background-color: #ffff;
+   border: none;
+   color: white;
+}
+
+.btn {
+   font-size: 24px;
+   height: 80px;
+   width: 100px;
+   cursor: pointer;
+}

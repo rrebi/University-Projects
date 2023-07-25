@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lab5</title>
+    <style>
+      #drag-me {
+        width: 100px;
+        height: 100px;
+        background-color: rgb(71, 95, 131);
+        cursor: move;
+        position: absolute;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="drag-me"></div>
+    
+    <script>
+      // Get the element to be dragged
+      var dragMe = document.getElementById("drag-me");
+
+      // Set the initial position
+      var xPos = 0;
+      var yPos = 0;
+
+      // Add event listeners for mouse down and up events
+      dragMe.addEventListener("mousedown", dragStart);
+      dragMe.addEventListener("mouseup", dragEnd);
+
+      function dragStart(event) {
+        // Store the initial position
+        xPos = event.clientX - dragMe.offsetLeft;
+        yPos = event.clientY - dragMe.offsetTop;
+
+        // Add event listener for mouse move events
+        document.addEventListener("mousemove", drag);
+      }
+
+      function drag(event) {
+        // Calculate the new position
+        var x = event.clientX - xPos;
+        var y = event.clientY - yPos;
+
+        // Set the new position
+        dragMe.style.left = x + "px";
+        dragMe.style.top = y + "px";
+      }
+
+      function dragEnd(event) {
+        // Remove event listener for mouse move events
+        document.removeEventListener("mousemove", drag);
+      }
+
+
+    </script>
+  </body>
+</html>

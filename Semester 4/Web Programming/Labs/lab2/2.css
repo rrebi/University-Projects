@@ -1,0 +1,101 @@
+.problem-statement-2{
+    width: 50%;
+    height: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    transform: translateX(50%);
+}
+
+.bar-graph {
+    padding: 0;
+    width: 800px;
+    /* creates the flex container */
+    display: flex;
+    /* aligns the bars at the beginning of the ox axis */
+    align-items: flex-end;
+    height: 400px;
+    margin: 0;
+  }
+  
+  .bar-graph li {
+    display: block;
+    position: relative;
+    height: 100%;
+    margin: 0 1.8% 0 0;
+    flex: 1 1 15%; /* grow, shrink, basis */
+  }
+  
+  .bar-graph .bar-graph-axis {
+    flex: 1 1 8%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+
+
+  .line_ox {
+  		width: 850px;
+  		height: 2px;
+  		background-color: black;
+  		margin: auto;
+      text-align: right;
+  }
+
+  .line_oy {
+  		width: 2px;
+  		height: 450px;
+  		background-color: black;
+  		position: absolute;
+  		/* left: 350px; */
+      left:auto;
+  }
+
+  .bar-graph .bar-graph-label {
+    color: #8e8c8c;
+  }
+  
+  
+  .bar-graph .percent {
+    opacity: 0.4;
+    width: 100%; /* the digit to be centered */
+    position: absolute;
+  }
+
+  
+  .bar-graph .description {
+    display: none;
+  }
+  
+
+
+  /* bars aspect*/
+  .bar-graph .bar.primary {
+    border: 1px solid #278377;
+    background: linear-gradient(#278377, #278377 70%);
+  }
+  
+  .bar-graph .bar.secondary {
+    border: 1px solid #274a83;
+    background: linear-gradient(#274a83, #274a83 70%);
+  }
+
+  
+  .bar-graph .bar.third {
+    border: 1px solid #933adb;
+    background: linear-gradient(#933adb, #933adb 70%);
+  }
+
+
+  
+  .bar-graph .bar.forth {
+    border: 1px solid #9e4998;
+    background: linear-gradient(#9e4998, #9e4998 70%);
+  }
+
+  
+  .bar-graph .bar.fifth {
+    border: 1px solid #a1454d;
+    background: linear-gradient(#a1454d, #a1454d 70%);
+  }
+

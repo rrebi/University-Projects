@@ -1,0 +1,282 @@
+body {
+    margin: 0px;
+    font-family: 'Nunito',sans-serif;
+    font-weight: 400;
+    font-size: 15;
+    letter-spacing: 0.5px;
+}
+
+
+
+.nav {
+    background-color: #eee;
+    height: 46px;
+    top: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+}
+
+.left-pics{
+    vertical-align: middle;
+    margin-bottom: 5px;
+    width: 22px;
+    height: 20px;
+}
+
+.left-pics2{
+    vertical-align: middle;
+    margin-bottom: 5px;
+    width: 22px;
+    height: 20px;
+    margin-left: -10px;
+}
+
+.category-fa{
+    vertical-align: middle;
+    display: inline;
+    padding-right: 15px;
+    margin-left: -25px;
+}
+
+
+.sun{
+    vertical-align: middle;
+    margin-bottom: 5px;
+    width: 62px;
+    height: 30px;
+}
+
+.left-side {
+    float: left;
+    padding-left: 15px;
+    height: 40px;
+    color: #262626;
+    line-height: 40px;
+    font-size: 15px;
+    margin-left: 35px;
+}
+
+
+.left-side2 {
+    float: left;
+    padding-left: 15px;
+    height: 40px;
+    color: #262626;
+    line-height: 40px;
+    font-size: 15px;
+    margin-left: -15px;
+}
+
+.left-side-li {
+    float: left;
+    text-decoration: none;
+}
+
+
+
+.left-nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.right-side {
+    float: right;
+    /* padding-left: 15px; */
+    height: 40px;
+    color: #262626;
+    line-height: 40px;
+    font-size: 15px;
+    margin-right: 35px;
+}
+
+
+
+.right-nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav2 {
+    background-color: #ffffff;
+    margin-top: 48px;
+    margin-left: 50px;
+}
+
+
+
+.title{
+    font-family: 'Heebo',sans-serif;
+    color:#333;
+    font-weight: 700;
+    font-size: 54px;
+    line-height: 70px;
+    text-align: left;
+}
+
+.left-text{
+    float:left;
+    text-align: center;
+    margin-left: 50px;
+}
+
+
+.nav3 {
+    background-color: #ffffff;
+    margin-top: 35px;
+    margin-left: 40px;
+}
+
+.nav-item {
+    vertical-align: middle;
+    display: inline;
+    padding-right: 10px;
+    color: #262626;
+}
+
+
+.active {
+    color: #ffffff;
+}
+
+
+.nav-item:hover {
+    cursor: pointer;
+    color: #40a944;
+}
+
+
+.tutorialsp{
+    
+    vertical-align: middle;
+    width: 220px;
+    height: 50px;
+}
+
+.log-in-button{
+    background-color: #ffffff;
+    border: 1px;
+    color: #222;
+    border: 1px solid #d1d1d1;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5.2px;
+    transition-duration: 0.3s;
+}
+
+.log-in-button:hover{
+    cursor: pointer;
+    color:#ffffff;
+    background-color: #40a944;
+}
+
+
+
+.pozafata{
+    /* position: absolute;
+    right: 10%; */
+    width: 765px;
+    height: 640px;
+    float: right;
+    margin-right: -25px;
+}
+
+.container {
+    display: flex;
+    
+    background-color: #ffffff;
+    width: 100%;
+  }
+  
+.left-pane {
+    flex: 1;
+    background-color: #ffffff;
+    margin-top: 90px;
+   
+}
+  
+.right-pane {
+    flex: 1;
+    padding: 20px;
+}
+
+ 
+.search-form {
+    display: flex;
+    margin: 20px auto;
+    position: relative;
+    background-color: #fff;
+    min-height: 58px;
+    border: 2px solid #59bb4d;
+    border-radius: 0.325rem;
+    padding-left: 16px;
+  }
+  
+.search-input {
+    border: none;
+    width: 100%;
+    
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    outline: none;
+}
+  
+.search-btn {
+    position: absolute;
+    right: 0;
+    width: 60px;
+    height: 100%;
+    border: none;
+    background-color: #fff;
+    color: #777676;
+  }
+  
+.search-btn i {
+    font-size: 20px;
+}
+  
+.bottom-search{
+    align-items: center;
+}
+
+.bottom-nav{
+    margin: 40px auto;
+    float: left;
+}
+
+.coding-button{
+    background-color: #40a944;
+    border: 1px;
+    color: #fff;
+    border: 1px solid #d1d1d1;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 8px;
+    transition-duration: 0.3s;
+    font-size: 16px;
+    height: 35px;
+}
+
+.coding-button:hover{
+    cursor: pointer;
+    color:#40a944;
+    background-color: #ffffff;
+}
+
+
+.engineering-button{
+    background-color: #fff;
+    border: none;
+    color: #333;
+    font-size: 28px;
+    height: 22px;
+    padding-left: 35px;
+}

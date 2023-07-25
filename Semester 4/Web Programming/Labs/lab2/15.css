@@ -1,0 +1,73 @@
+.problem-statement-15 {
+    width: 50%;
+    height: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    transform: translateX(50%);
+}
+
+#menu * { 
+    list-style-type: none;
+}
+
+#menu {
+    line-height: 10px; 
+    margin: auto; 
+    width:900px;
+}
+
+#menu a { 
+    display: block; 
+    text-decoration: none; 
+    color: black;
+}
+
+#menu a:hover { 
+    background: rgb(29, 89, 93);
+}
+
+
+#menu ul li ul li { 
+    width: 170px; 
+    
+    background: rgba(40, 124, 130, 0.9);
+}
+
+#menu ul li ul li a { 
+    font-weight: normal;
+    padding: 15px 10px;
+}
+
+#menu ul li {
+    float: left; /*the items in the menu displayed horizontaly*/
+    width: 170px; 
+    background: rgb(40, 124, 130);
+}
+
+#menu ul li a { 
+    font-weight: bold;
+    padding: 15px 10px;
+}
+
+#menu li { 
+    position:relative; 
+}
+
+#menu ul li ul, #menu:hover ul li ul, #menu:hover ul li:hover ul li ul{ 
+    display:none; /*hides the menu*/
+    list-style-type:none; 
+    width: 140px;
+}
+
+#menu:hover ul, #menu:hover ul li:hover ul, #menu:hover ul li:hover ul li:hover ul { 
+    display:block; /*shows the menu*/
+}
+
+
+#menu:hover ul li:hover ul { 
+    position: absolute; /* shows the menu rise up */
+}
+
+#menu>ul>li:hover>ul { 
+    bottom:100%; /* shows the menu rise up */
+}
