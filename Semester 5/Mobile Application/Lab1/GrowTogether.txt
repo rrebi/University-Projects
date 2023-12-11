@@ -1,0 +1,49 @@
+1.  Short Description
+
+The app is called Grow Together. Here, people can add their daily activities, create a planner and grow a flower/plant each day.
+In this era of fast living, procrastination can lead to missed opportunities and unnecessary stress.
+But with Grow Together, we offer a refreshing approach on time management, by providing a platform that helps you unwind and learn how to prioritize each day. 
+People can add/edit/delete and marked as complete their daily activities, in order to create a personalized planner.
+The centerpiece of our app is the virtual garden where users can cultivate a flower or plant each day. 
+This digital garden symbolizes personal growth and progress, serving as a tangible representation of their accomplishments.
+Join us in cultivating a better future for yourself, one day at a time. 
+
+2. Domain Details
+
+Each add has 5 fields: title, details, time, goal, emotion
+All of them are to be set initally by the person.
+
+title: A simple title that will describe the activity
+details: A more detailed description of each activity 
+time: The aproximate time of the day, when the task should be completed (ex: 1pm-5pm)
+goal: The bigger goal this task is gonna help with.
+emotion: How completing this task will make the person feel.
+
+3. CRUD
+
+Add: In the main page there is a list with all the 'to dos' and above them is a button for adding. If you click it you will be taken to a new page with fields that must be completed.
+Here, a person can add their new daily activity. After they fill in all the fields, the new 'to do' will be ready to be added to the main page.
+
+Update: In order to edit an activity, you must click on it in the main page. Here, a page with all the details will be shown, and 2 buttons, one for save and one for delete.
+
+Delete: In the same page with the edit option, you have a button saying "delete task"
+Once you no longer consider you should complete a task, you can delete it by clicking this button. You will be asked if you are sure, just for confirmation.
+
+Next to each daily activity there is a 'checked button'. when the person clicks it, a new flower begins its growing process or continues growing
+
+4. Persistence details
+
+All the operations will have to be persisted on the database.
+   
+5. Offline device details
+
+When offline, the application lets the user to read, add, remove and modify entries locally.
+In this way, changes will persist only locally in the database:
+-the entities created are stored in the local database
+-the update operation works for the locally stored entities
+-the delete operation is performed on the local database
+When the device is online, the data that was persisted locally will be pushed to the server, and the other features will work as planned.
+
+
+
+

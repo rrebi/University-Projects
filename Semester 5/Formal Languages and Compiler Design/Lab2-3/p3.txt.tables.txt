@@ -1,0 +1,9 @@
+Integer Constants table starts here:
+0: 0
+1: 1
+String Constants table starts here:
+Identifiers table starts here:
+a: a
+i: i
+n: n
+sum: sum

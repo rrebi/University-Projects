@@ -1,0 +1,12 @@
+Constants table:
+0: 2
+1: 1
+"Not Prime": 6
+2: 3
+-1: 4
+"Prime": 5
+
+Identifiers table:
+prim: 2
+i: 3
+a: 1

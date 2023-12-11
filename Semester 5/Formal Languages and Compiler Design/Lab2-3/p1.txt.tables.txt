@@ -1,0 +1,7 @@
+Integer Constants table starts here:
+String Constants table starts here:
+Identifiers table starts here:
+a: a
+b: b
+c: c
+min: min

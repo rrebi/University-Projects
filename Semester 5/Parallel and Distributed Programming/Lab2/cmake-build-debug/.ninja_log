@@ -1,0 +1,5 @@
+# ninja log v5
+3	798	7206935371771535	CMakeFiles/Lab2.dir/main.cpp.obj	e4273c60668d8cad
+799	930	7206935373051810	Lab2.exe	eafd15de6ebca2da
+13	114	7206664365304985	CMakeFiles/Lab2.dir/mina2.cpp.obj	b24ad174c8d7677e
+1	762	7212743050537313	build.ninja	89357076b91b1a66
