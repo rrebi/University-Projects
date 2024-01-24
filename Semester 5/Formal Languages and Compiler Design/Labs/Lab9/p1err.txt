@@ -1,0 +1,7 @@
+var
+ identifier: int;
+{
+if(identifier==0){print(ok);};
+ read(idenifier);
+ print(“Hello, World!");
+}

@@ -1,0 +1,80 @@
+%{
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "y.tab.h"
+int lines = 1;
+%}
+
+%option noyywrap
+%option caseless
+
+DIGIT [0-9]
+NON_ZERO_DIGIT [1-9]
+INT_CONSTANT [+-]?{NON_ZERO_DIGIT}{DIGIT}*|0
+LETTER [a-zA-Z_]
+SPECIAL_CHAR [ _]
+STRING_CONSTANT (\"({LETTER}|{DIGIT}|{SPECIAL_CHAR})*\")
+IDENTIFIER (#|{LETTER})({LETTER}|{DIGIT})*
+
+BAD_IDENTIFIER ({DIGIT})+({LETTER})+({LETTER}|{DIGIT})*
+BAD_CONST [+-]0|0{NON_ZERO_DIGIT}{DIGIT}*
+
+%%
+
+"var" 	{ printf("reserved word: %s\n", yytext); return VAR; }
+"arr" 	{ printf("reserved word: %s\n", yytext); return ARR; }
+"int" 	{ printf("reserved word: %s\n", yytext); return INT; }
+"str" 	{ printf("reserved word: %s\n", yytext); return STR; }
+"read"	{ printf("reserved word: %s\n", yytext); return READ; }
+"if" 	{ printf("reserved word: %s\n", yytext); return IF; }
+"else" 	{ printf("reserved word: %s\n", yytext); return ELSE; }
+"do" 	{ printf("reserved word: %s\n", yytext); return DO; }
+"while" { printf("reserved word: %s\n", yytext); return WHILE; }
+"print" { printf("reserved word: %s\n", yytext); return PRINT; }
+
+"+" 	{ printf("operator: %s\n", yytext); return PLUS; }
+"-" 	{ printf("operator: %s\n", yytext); return MINUS; }
+"*" 	{ printf("operator: %s\n", yytext); return TIMES; }
+"/" 	{ printf("operator: %s\n", yytext); return DIV; }
+"%" 	{ printf("operator: %s\n", yytext); return MOD; }
+">=" 	{ printf("operator: %s\n", yytext); return BIGGEREQ; }
+"<=" 	{ printf("operator: %s\n", yytext); return LESSEQ; }
+">" 	{ printf("operator: %s\n", yytext); return BIGGER; }
+"<" 	{ printf("operator: %s\n", yytext); return LESS; }
+"==" 	{ printf("operator: %s\n", yytext); return EQQ; }
+"=" 	{ printf("operator: %s\n", yytext); return EQ; }
+"!=" 	{ printf("operator: %s\n", yytext); return NEQ; }
+
+"[" 	{ printf("separator: %s\n", yytext); return SQBRACKETOPEN; }
+"]" 	{ printf("separator: %s\n", yytext); return SQBRACKETCLOSE; }
+"(" 	{ printf("separator: %s\n", yytext); return OPEN; }
+")" 	{ printf("separator: %s\n", yytext); return CLOSE; }
+"{" 	{ printf("separator: %s\n", yytext); return BRACKETOPEN; }
+"}" 	{ printf("separator: %s\n", yytext); return BRACKETCLOSE; }
+"," 	{ printf("separator: %s\n", yytext); return COMMA; }
+":" 	{ printf("separator: %s\n", yytext); return COLON; }
+";" 	{ printf("separator: %s\n", yytext); return SEMICOLON; }
+
+
+{IDENTIFIER} 		{ printf("identifier: %s\n", yytext); return IDENTIFIER; }
+
+{BAD_IDENTIFIER} 	{ printf("Error (identifier) at token %s at line %d\n", yytext, lines); return -1; }
+
+{INT_CONSTANT} 		{ printf("integer constant: %s\n", yytext); return INTCONSTANT; }
+
+{BAD_CONST} 		{ printf("Error (constant) at token %s at line %d \n", yytext, lines); return -1;}
+
+{STRING_CONSTANT} 	{ printf("sString constant: %s\n", yytext); return STRINGCONSTANT; }
+SS
+
+[ \t]+ {}
+
+"//"(.)*[\n]+ {++lines;}
+
+
+[\n]+ {++lines;}
+
+. {printf("Error at token %s at line %d\n", yytext, lines); exit(1);}
+
+%%
