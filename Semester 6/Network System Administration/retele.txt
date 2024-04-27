@@ -1,0 +1,12 @@
+VBox, Ubuntu Server
+Firewall (-ufw status)
+SSH (putty)
+SCP (WinSCP) -ls to check file transfer
+Web -cd /var/www/html
+    -echo smth >index.html
+Mail -alpine
+Logwatch -logwatch --mailto root
+Proxy -curl -i 192.168.1.129:3128 http://example.com
+Docker -docker run hello-world
+
+systemctl status/start/restart X
